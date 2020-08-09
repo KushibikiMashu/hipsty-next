@@ -1,14 +1,25 @@
 import React from 'react'
-import App from '../src/components/pages/App'
+import { videos } from '../src/data/videos'
+import VideoList from '../src/components/pages/VideoList'
 
-type Props = unknown
+type Props = {
+  videos: {
+    title: string
+    hash: string
+    thumbnail: string
+    channelTitle: string
+    publishedAt: string
+  }[]
+}
 
-const Component: React.FC<Props> = () => <App />
+const Component: React.FC<Props> = (props) => <VideoList videos={props.videos} />
 
 type ContainerProps = unknown
 
 const Container: React.FC<ContainerProps> = () => {
-  return <Component />
+  // Mapperが必要
+
+  return <Component videos={videos} />
 }
 
 Container.displayName = 'IndexPage'

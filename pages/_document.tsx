@@ -1,5 +1,6 @@
 import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -32,6 +33,7 @@ class MyDocument extends Document {
           <meta name="twitter:card" content="summary_large_image" />
           <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
         </Head>
+        <CssBaseline />
         <body>
           <Main />
           <NextScript />

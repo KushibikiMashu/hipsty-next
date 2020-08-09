@@ -13,13 +13,13 @@ const styles = {
 }
 
 function TwitterIcon(props) {
-  const { classes, video } = props
+  const { classes, title, hash } = props
   return (
     <div className={classes.icon}>
       <TwitterShareButton
-        title={`「${video.title}」`}
+        title={`「${title}」`}
         hashtags={['日本語ラップ', 'HIPHOP']}
-        url={CONST.videoUrl + '/' + video.hash}
+        url={CONST.videoUrl + '/' + hash}
       >
         <i className="fab fa-twitter fa-lg" style={{ color: '#1da1f2' }} />
       </TwitterShareButton>
@@ -29,7 +29,8 @@ function TwitterIcon(props) {
 
 TwitterIcon.propTypes = {
   classes: PropTypes.object.isRequired,
-  video: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  hash: PropTypes.string.isRequired,
 }
 
 export default withStyles(styles)(TwitterIcon)

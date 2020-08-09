@@ -11,6 +11,12 @@ export type VideoSchema = {
   updated_at: string
 }
 
-export type Video = any
+export type Video = {
+  title: string
+  hash: string
+  thumbnail: string
+  channelTitle: string
+  publishedAt: string
+}
 
 export type Videos = Video[]

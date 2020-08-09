@@ -1,18 +1,17 @@
 import '../styles/globals.css'
 import Head from 'next/head'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import React from 'react'
+import Layout from '../src/components/Layout'
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Head>
-        <title>HIPSTY | 日本語ラップ好きのための動画サイト</title>
-      </Head>
-      <CssBaseline />
+const MyApp = ({ Component, pageProps }) => (
+  // TODO video/:hash はレイアウトを変える？
+  <>
+    <Head>
+      <title>HIPSTY | 日本語ラップ好きのための動画サイト</title>
+    </Head>
+    <Layout>
       <Component {...pageProps} />
-    </>
-  )
-}
+    </Layout>
+  </>
+)
 
 export default MyApp
