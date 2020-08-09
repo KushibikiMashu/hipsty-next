@@ -12,8 +12,6 @@ class MyDocument extends Document {
       <Html>
         <Head lang="ja">
           <meta name="Content-Type" content="text/html; charset=UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>HIPSTY | 日本語ラップ好きのための動画サイト</title>
           <link rel="canonical" href="https://hipsty.net/" />
           <meta property="og:site_name" content="HIPSTY | 日本語ラップ好きのための動画サイト" />
           <meta property="og:title" content="HIPSTY" />
