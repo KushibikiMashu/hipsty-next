@@ -1,4 +1,8 @@
-type Props = unknown
+import { withStyles } from '@material-ui/core'
+
+interface Props extends WithStyles<typeof styles> {
+  video: Video
+}
 
 const Component: React.FC<Props> = () => (
 
@@ -13,4 +17,4 @@ const Container: React.FC<ContainerProps> = () => {
 
 Container.displayName = DISPLAY_NAME
 
-export default Container
+export default withStyles(styles)(Container)
