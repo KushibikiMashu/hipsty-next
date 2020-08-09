@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fix": "prettier --config .prettierrc.js --write '{./pages,src}/**/*.{js,jsx,ts,tsx}'",
     "lint": "eslint . -c .eslintrc.js --ignore-pattern './*.js' --fix"
   },
   "husky": {
@@ -15,10 +14,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "npm run fix",
-      "npm run lint"
-    ]
+    "*.{js,jsx,ts,tsx}": ["npm run lint"]
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
