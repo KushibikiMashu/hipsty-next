@@ -10,27 +10,27 @@ import PersonIcon from '@material-ui/icons/Person'
 import LiveTvIcon from '@material-ui/icons/LiveTv'
 
 const styles = {
-    root: {
-        width: '100%',
-        textAlign: 'center'
-    }
+  root: {
+    width: '100%',
+    textAlign: 'center',
+  },
 }
 
 function LabelBottomNavigationDummy(props) {
-    const { classes } = props
-    return (
-        <BottomNavigation className={classes.root}>
-            <BottomNavigationAction icon={<FiberNewIcon />} />
-            <BottomNavigationAction icon={<MusicVideoIcon />} />
-            <BottomNavigationAction icon={<NewReleasesIcon />} />
-            <BottomNavigationAction icon={<PersonIcon />} />
-            <BottomNavigationAction icon={<LiveTvIcon />} />
-        </BottomNavigation>
-    )
+  const { classes } = props
+  return (
+    <BottomNavigation className={classes.root}>
+      <BottomNavigationAction icon={<FiberNewIcon />} />
+      <BottomNavigationAction icon={<MusicVideoIcon />} />
+      <BottomNavigationAction icon={<NewReleasesIcon />} />
+      <BottomNavigationAction icon={<PersonIcon />} />
+      <BottomNavigationAction icon={<LiveTvIcon />} />
+    </BottomNavigation>
+  )
 }
 
 LabelBottomNavigationDummy.propTypes = {
-    classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 }
 
 export default withStyles(styles)(LabelBottomNavigationDummy)
