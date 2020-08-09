@@ -84,5 +84,7 @@ module.exports = {
     'react/jsx-no-target-blank': 'off',
     // 関数の型定義を必ず書かなくてもよくする
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    // stylesをComponentとContainerの間に置くため
+    'no-use-before-define': 'off',
   },
 }
