@@ -82,5 +82,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'error',
     // referrerをつけれるようにする
     'react/jsx-no-target-blank': 'off',
+    // 関数の型定義を必ず書かなくてもよくする
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 }
