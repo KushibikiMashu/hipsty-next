@@ -1,18 +1,20 @@
 import { withStyles } from '@material-ui/core'
 
 interface Props extends WithStyles<typeof styles> {
-  video: Video
+
 }
 
 const Component: React.FC<Props> = () => (
 
 )
 
-type ContainerProps = unknown
+interface ContainerProps extends WithStyles<typeof styles> {
 
-const Container: React.FC<ContainerProps> = () => {
+}
 
-  return <Component/>
+const Container: React.FC<ContainerProps> = (props) => {
+
+  return <Component classes={props.classes}/>
 }
 
 Container.displayName = DISPLAY_NAME
