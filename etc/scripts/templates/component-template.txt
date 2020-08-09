@@ -1,0 +1,16 @@
+type Props = unknown
+
+const Component: React.FC<Props> = () => (
+
+)
+
+type ContainerProps = unknown
+
+const Container: React.FC<ContainerProps> = () => {
+
+  return <Component/>
+}
+
+Container.displayName = DISPLAY_NAME
+
+export default Container
