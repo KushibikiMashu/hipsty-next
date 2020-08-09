@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core'
 import VideoCardPlaying from '../organisms/VideoCardPlaying'
 import Grid from '@material-ui/core/Grid/Grid'
 import Button from '@material-ui/core/Button'
-// import AppHelmet from '../atoms/AppHelmet'
+import Link from 'next/link'
 
 const styles = {
   button: {
@@ -35,9 +34,13 @@ function VideoPlayerTemplate(props) {
         </Grid>
       </Grid>
       <Grid container justify="center" direction="row">
-        <Button variant="extendedFab" className={classes.button} component={Link} to={'/'}>
-          HOME
-        </Button>
+        <Link href="/">
+          <a>
+            <Button variant="extendedFab" className={classes.button}>
+              HOME
+            </Button>
+          </a>
+        </Link>
       </Grid>
     </React.Fragment>
   )

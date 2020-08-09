@@ -1,17 +1,17 @@
 const pathToJson = (filename) => {
-  return location.origin + '/json/' + filename + '.json'
+  return '/json/' + filename + '.json'
 }
 
-const newList = location.origin + '/api/video/new'
-const videoList = location.origin + '/api/video/list'
+const newList = '/api/video/new'
+const videoList = '/api/video/list'
 
 const channelId = { neetTokyo: 63 }
 
 const CONST = {
-  baseUrl: location.origin,
-  videoUrl: location.origin + '/video',
-  newList: location.origin + '/api/video/new',
-  videoList: location.origin + '/api/video/list',
+  baseUrl: '/',
+  videoUrl: '/video',
+  newList: '/api/video/new',
+  videoList: '/api/video/list',
   banner: 'https://s3-ap-northeast-1.amazonaws.com/hipsty/hipsty.jpg',
   youtubeEnbedUrl: 'https://www.youtube.com/embed/',
 
@@ -21,7 +21,7 @@ const CONST = {
   channelId: { neetTokyo: 63 },
 
   pathToJson: (filename) => {
-    return location.origin + '/json/' + filename + '.json'
+    return '/json/' + filename + '.json'
   },
 }
 

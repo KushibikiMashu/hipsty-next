@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core'
 import AppBar from '@material-ui/core/AppBar/AppBar'
 import Toolbar from '@material-ui/core/Toolbar/Toolbar'
 import Typography from '@material-ui/core/Typography/Typography'
+import Link from 'next/link'
 
 const styles = (theme) => ({
   appBar: {
@@ -28,9 +28,11 @@ function TitleBar(props) {
   return (
     <AppBar className={classes.appBar} position="absolute">
       <Toolbar>
-        <Typography className={classes.title} variant="title" color="inherit" noWrap component={Link} to="/">
-          <img src="/image/logo.png" alt="HIPSTY" height="64" />
-        </Typography>
+        <Link href="/">
+          <Typography className={classes.title} variant="title" color="inherit" noWrap>
+            <img src="/image/logo.png" alt="HIPSTY" height="64" />
+          </Typography>
+        </Link>
       </Toolbar>
     </AppBar>
   )

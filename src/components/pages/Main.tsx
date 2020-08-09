@@ -1,9 +1,9 @@
 import React from 'react'
-import request from 'superagent'
 import MainTemplate from '../templates/MainTemplate'
 import MainDummyTemplate from '../templates/MainDummyTemplate'
 import VideoCardDummy from '../organisms/VideoCardDummy'
 import { CONST } from '../const'
+import { videos } from 'src/data/videos'
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -17,21 +17,19 @@ export default class Main extends React.Component {
   // コンポーネントがマウントする前に動画情報のJSONを読み込む
   /* eslint-disable-next-line camelcase */
   UNSAFE_componentWillMount() {
-    if (this.state.videos === null) {
-      request.get(CONST.pathToJson('main')).end((err, res) => {
-        this.loadedJson(err, res)
-      })
-    }
+    // if (this.state.videos === null) {
+    //   fetch(CONST.pathToJson('main')).end((err, res) => {
+    //     this.loadedJson(err, res)
+    //   })
+    // }
+    this.loadedJson(videos)
   }
 
   // 読み込んだ全ての動画情報を配列でvideosに格納
-  loadedJson(err, res) {
-    if (err) {
-      return
-    }
+  loadedJson(videos) {
     this.setState({
-      videos: res.body,
-      newVideos: res.body.slice(0, 100),
+      videos: videos,
+      newVideos: videos.slice(0, 100),
     })
   }
 
