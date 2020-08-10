@@ -1,8 +1,9 @@
 import React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import VideoService from 'src/infra/VideoService'
-import { Video } from '../../src/types/Video'
-import VideoPlayerTemplate from '../../src/components/templates/VideoPlayerTemplate'
+import { Video } from '../../../src/types/Video'
+import VideoPlayerTemplate from '../../../src/components/templates/VideoPlayerTemplate'
+import { genreToSlug } from '../../../src/infra/VideoPresenter'
 
 type Props = {
   video: Video
@@ -11,7 +12,7 @@ type Props = {
 const Component: React.FC<Props> = (props) => <VideoPlayerTemplate video={props.video} />
 
 type Param = {
-  genre: string
+  slug: string
   hash: string
 }
 
@@ -25,7 +26,7 @@ export const getStaticPaths: GetStaticPaths<Param> = async () => {
   const videos = VideoService.getAllVideo()
   const params = videos.map((video) => ({
     params: {
-      genre: video.genre,
+      slug: genreToSlug(video.genre),
       hash: video.hash,
     },
   }))

@@ -20,18 +20,18 @@ const Component: React.FC<Props> = (props) => (
       <ResponsiveIframe src={CONST.youtubeEnbedUrl + props.video.hash} />
 
       <CardContent className={props.classes.cardContent}>
-        <Typography gutterBottom variant="h2">
+        <Typography gutterBottom variant="h5">
           {props.video.title}
         </Typography>
       </CardContent>
 
       <CardActions className={props.classes.action}>
         <div>
-          <div>
-            <Typography variant="caption" className={props.classes.channelTitle}>
+          <div className={props.classes.meta}>
+            <Typography variant="subtitle2" className={props.classes.channelTitle}>
               {props.video.channelTitle}
             </Typography>
-            <Typography variant="caption">{props.video.publishedAt}</Typography>
+            <Typography variant="subtitle2">{props.video.publishedAt}</Typography>
           </div>
         </div>
         <div className={props.classes.twitter}>
@@ -51,27 +51,33 @@ const styles = () =>
     card: {
       maxWidth: 640,
       width: '100%',
+      padding: '12px 0px',
       justifyContent: 'center',
     },
     cardContent: {
-      paddingTop: 8,
+      paddingTop: 12,
       paddingBottom: 4,
       paddingLeft: 12,
       paddingRight: 12,
+      textAlign: 'left',
     },
     action: {
       paddingTop: 0,
       paddingRight: 10,
-      paddingLeft: 10,
+      paddingLeft: 16,
       display: 'flex',
-      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    meta: {
+      textAlign: 'left',
     },
     channelTitle: {
+      paddingBottom: 4,
       textAlign: 'left',
     },
     twitter: {
       marginLeft: 'auto',
-      paddingRight: 8,
+      paddingRight: 20,
     },
   })
 

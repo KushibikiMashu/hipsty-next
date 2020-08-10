@@ -32,8 +32,9 @@ const Component: React.FC<Props> = (props) => (
 
 const styles = {
   button: {
-    marginTop: 12,
-    marginBottom: 44,
+    padding: '12px 24px',
+    marginTop: 24,
+    marginBottom: 56,
   },
 }
 
