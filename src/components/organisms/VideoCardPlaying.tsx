@@ -6,9 +6,9 @@ import CardContent from '@material-ui/core/CardContent/CardContent'
 import Typography from '@material-ui/core/Typography/Typography'
 import { Video } from '../../types/Video'
 import CardActions from '@material-ui/core/CardActions/CardActions'
-import { TwitterShareButton } from 'react-share'
 import { withStyles } from '@material-ui/core'
 import { createStyles, WithStyles } from '@material-ui/styles'
+import TwitterIcon from '../atoms/TwitterIcon'
 
 interface Props extends WithStyles<typeof styles> {
   video: Video
@@ -35,15 +35,7 @@ const Component: React.FC<Props> = (props) => (
           </div>
         </div>
         <div className={props.classes.twitter}>
-          <div className={props.classes.icon}>
-            <TwitterShareButton
-              title={`「${props.video.title}」`}
-              hashtags={['日本語ラップ', 'HIPHOP']}
-              url={CONST.videoUrl + '/' + props.video.hash}
-            >
-              <i className="fab fa-twitter fa-lg" style={{ color: '#1da1f2' }} />
-            </TwitterShareButton>
-          </div>
+          <TwitterIcon title={props.video.title} hash={props.video.hash} />
         </div>
       </CardActions>
     </Card>
@@ -80,11 +72,6 @@ const styles = () =>
     twitter: {
       marginLeft: 'auto',
       paddingRight: 8,
-    },
-    icon: {
-      '&:hover': {
-        cursor: 'pointer',
-      },
     },
   })
 
