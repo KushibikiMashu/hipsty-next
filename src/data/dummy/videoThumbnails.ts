@@ -1,4 +1,4 @@
-export type videoThumbnails = [
+export const videoThumbnails = [
   {
     id: '1'
     video_id: '1'
