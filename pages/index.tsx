@@ -1,15 +1,10 @@
 import React from 'react'
-import { videos } from '../src/data/dummy/videos'
 import VideoList from '../src/components/pages/VideoList'
+import VideoService from 'src/infra/VideoService'
+import { Videos } from '../src/types/Video'
 
 type Props = {
-  videos: {
-    title: string
-    hash: string
-    thumbnail: string
-    channelTitle: string
-    publishedAt: string
-  }[]
+  videos: Videos
 }
 
 const Component: React.FC<Props> = (props) => <VideoList videos={props.videos} />
@@ -17,7 +12,7 @@ const Component: React.FC<Props> = (props) => <VideoList videos={props.videos} /
 type ContainerProps = unknown
 
 const Container: React.FC<ContainerProps> = () => {
-  // Mapperが必要
+  const videos = VideoService.getAllVideo()
 
   return <Component videos={videos} />
 }

@@ -20,7 +20,7 @@ const Component: React.FC<Props> = (props) => (
     <Card className={props.classes.card}>
       <Link href={'/video/[id]'} as={props.video.hash}>
         <a>
-          <CardMedia className={props.classes.media} src={props.video.thumbnail} title={props.video.hash} />
+          <CardMedia className={props.classes.media} image={props.video.thumbnail} title={props.video.hash} />
         </a>
       </Link>
 
