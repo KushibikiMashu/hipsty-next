@@ -12,11 +12,22 @@ export type VideoSchema = {
 }
 
 export type Video = {
+  // Video
+  id: string
+  channelId: string
   title: string
   hash: string
-  thumbnail: string
-  channelTitle: string
+  genre: string
   publishedAt: string
+
+  // Thumbnail
+  thumbnail: string
+
+  // Channel
+  channelTitle: string
+  channelHash: string
+  channelVideoCount: string
+  channelPublishedAt: string
 }
 
 export type Videos = Video[]
