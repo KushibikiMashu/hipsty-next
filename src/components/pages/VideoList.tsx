@@ -40,7 +40,6 @@ const Container: React.FC<ContainerProps> = (props) => {
     hasMoreVideos: true,
     loadedVideosCount: 20,
   }))
-
   const items = []
 
   for (let i = 0; i < loadedVideosCount; i++) {
@@ -66,7 +65,8 @@ const Container: React.FC<ContainerProps> = (props) => {
 
 const styles = {
   button: {
-    marginTop: 12,
+    padding: '12px 24px',
+    marginTop: 44,
     marginBottom: 44,
   },
   bottom: {

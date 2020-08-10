@@ -10,15 +10,18 @@ import Typography from '@material-ui/core/Typography/Typography'
 import CardActions from '@material-ui/core/CardActions/CardActions'
 import TwitterIcon from '../atoms/TwitterIcon'
 import { Video } from 'src/types/Video'
+import { genreToSlug } from '../../infra/VideoPresenter'
 
 interface Props extends WithStyles<typeof styles> {
   video: Video
+  slug: string
+  shortTitle: string
 }
 
 const Component: React.FC<Props> = (props) => (
   <Grid item>
     <Card className={props.classes.card}>
-      <Link href={'/video/[id]'} as={props.video.hash}>
+      <Link href={'/videos/[slug]/[hash]'} as={`/videos/${props.slug}/${props.video.hash}`}>
         <a>
           <CardMedia className={props.classes.media} image={props.video.thumbnail} title={props.video.hash} />
         </a>
@@ -26,7 +29,7 @@ const Component: React.FC<Props> = (props) => (
 
       <CardContent className={props.classes.cardContent}>
         <Typography gutterBottom variant="subtitle1">
-          {props.video.title}
+          {props.shortTitle}
         </Typography>
       </CardContent>
 
@@ -73,4 +76,15 @@ const styles = {
   },
 }
 
-export default withStyles(styles)(Component)
+interface ContainerProps extends WithStyles<typeof styles> {
+  video: Video
+}
+
+const Container: React.FC<ContainerProps> = (props) => {
+  const slug = genreToSlug(props.video.genre)
+  const shortTitle = `${props.video.title.slice(0, 36)}...`
+
+  return <Component {...props} slug={slug} shortTitle={shortTitle} />
+}
+
+export default withStyles(styles)(Container)

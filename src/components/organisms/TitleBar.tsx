@@ -31,12 +31,7 @@ const styles = (theme: Theme) =>
     title: {
       height: 64,
       marginBottom: 0,
-      textAlign: 'left',
       textDecoration: 'none',
-      marginLeft: theme.spacing(3 - 8),
-      [theme.breakpoints.down('xs')]: {
-        marginLeft: 'calc(100% * 1 / 8)',
-      },
     },
   })
 
