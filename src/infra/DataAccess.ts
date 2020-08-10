@@ -7,6 +7,9 @@ import { VideoThumbnailSchema } from '../types/VideoThumbnail'
 import { ChannelSchema } from '../types/Channel'
 import { ChannelThumbnailSchema } from '../types/ChannelThumbnail'
 
+// DataAccess層を設けることによって、データソースに対する関心が分離できる
+// 仮にNetwork（API）を通じてデータを取得する変更があったとしても容易である
+
 export interface Model<T> {
   findAll(): T[]
 }

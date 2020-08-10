@@ -13,7 +13,7 @@ class VideoService {
     const videoThumbnails = this.videoThumbnailModel.findAll()
 
     if (videos.length !== videoThumbnails.length) {
-      throw new Error()
+      throw new Error('The number of Video and VideoThumbnail is incorrect.')
     }
 
     const channels = this.channelModel.findAll()
@@ -22,7 +22,7 @@ class VideoService {
 
     for (let i = 0; i < channelIds.length; i++) {
       const channel = channels[i]
-      channelMap.set(channel.id, channel.title)
+      channelMap.set(channel.id, channel)
     }
 
     return videos.map((video, i) => {
@@ -30,7 +30,7 @@ class VideoService {
       const channel = channelMap.get(video.channel_id)
 
       if (typeof channel === 'undefined') {
-        throw new Error()
+        throw new Error("Channel doesn't exist.")
       }
 
       return {
@@ -43,7 +43,7 @@ class VideoService {
         publishedAt: video.published_at,
 
         // Thumbnail
-        thumbnail: thumbnail.high,
+        thumbnail: thumbnail.medium,
 
         // Channel
         channelTitle: channel.title,
