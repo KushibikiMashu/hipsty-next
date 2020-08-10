@@ -5,17 +5,17 @@ import Grid from '@material-ui/core/Grid/Grid'
 import Button from '@material-ui/core/Button'
 import Link from 'next/link'
 import { WithStyles } from '@material-ui/styles'
-import { Video, Videos } from '../../types/Video'
+import { Video } from '../../types/Video'
 
 interface Props extends WithStyles<typeof styles> {
-  playingVideo: Video
+  video: Video
 }
 
 const Component: React.FC<Props> = (props) => (
   <>
     <Grid container justify="center" spacing={10}>
       <Grid item>
-        <VideoCardPlaying video={props.playingVideo} />
+        <VideoCardPlaying video={props.video} />
       </Grid>
     </Grid>
     <Grid container justify="center" direction="row">
@@ -37,21 +37,4 @@ const styles = {
   },
 }
 
-interface ContainerProps extends WithStyles<typeof styles> {
-  videos: Videos
-}
-
-const Container: React.FC<ContainerProps> = (props) => {
-  const hash = location.pathname.split('/').pop()
-  const playingVideo = []
-  props.videos.map((video) => {
-    if (video.hash !== hash) {
-      return
-    }
-    playingVideo.push(video)
-  })
-
-  return <Component {...props} playingVideo={props.videos[0]} />
-}
-
-export default withStyles(styles)(Container)
+export default withStyles(styles)(Component)
