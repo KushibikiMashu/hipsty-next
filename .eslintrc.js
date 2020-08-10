@@ -86,5 +86,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     // stylesをComponentとContainerの間に置くため
     'no-use-before-define': 'off',
+    // TypeScriptのconstructorのfieldは空でOK
+    'no-useless-constructor': 'off',
   },
 }
