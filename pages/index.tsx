@@ -1,5 +1,5 @@
 import React from 'react'
-import { videos } from '../src/data/videos'
+import { videos } from '../src/data/dummy/videos'
 import VideoList from '../src/components/pages/VideoList'
 
 type Props = {
