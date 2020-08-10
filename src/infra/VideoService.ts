@@ -1,5 +1,5 @@
 import { ChannelModel, VideoModel, VideoThumbnailModel } from './DataAccess'
-import { Videos } from '../types/Video'
+import { Video, Videos } from '../types/Video'
 
 class VideoService {
   constructor(
@@ -52,6 +52,17 @@ class VideoService {
         channelPublishedAt: channel.published_at,
       }
     })
+  }
+
+  getVideoByHash = (hash: string): Video => {
+    const videos = this.getAllVideo()
+    const video = videos.find((video) => video.hash === hash)
+
+    if (!video) {
+      throw new Error()
+    }
+
+    return video
   }
 }
 
