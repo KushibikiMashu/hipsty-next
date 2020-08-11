@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid/Grid'
 import { WithStyles } from '@material-ui/styles'
 
 interface Props extends WithStyles<typeof styles> {
-  items: React.FC[]
+  items: ReactElement[]
   loadMoreButton: React.FC | ReactElement
 }
 

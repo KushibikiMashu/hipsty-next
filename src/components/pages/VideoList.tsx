@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import VideoCard from '../organisms/VideoCard'
 import VideoListTemplate from '../templates/VideoListTemplate'
 import { Videos } from '../../types/Video'
@@ -6,17 +6,20 @@ import { WithStyles } from '@material-ui/styles'
 import Button from '@material-ui/core/Button/Button'
 import Grid from '@material-ui/core/Grid/Grid'
 import { withStyles } from '@material-ui/core/styles'
+import useLoadMore from '../../hooks/useLoadMore'
 
 interface Props extends WithStyles<typeof styles> {
-  items: React.FC[]
   hasMoreVideos: boolean
   handleClick: () => void
   defaultCount: number
+  videos: Videos
 }
 
 const Component: React.FC<Props> = (props) => (
   <VideoListTemplate
-    items={props.items}
+    items={props.videos.map((video, i) => (
+      <VideoCard key={i} video={video} />
+    ))}
     loadMoreButton={
       props.hasMoreVideos ? (
         <Grid container justify="center" direction="row">
@@ -43,41 +46,15 @@ interface ContainerProps extends WithStyles<typeof styles> {
 
 const Container: React.FC<ContainerProps> = (props) => {
   const defaultCount = 50
-  // TODO Custom Hooksで切り出す
-  const [{ hasMoreVideos, loadedVideosCount }, setState] = useState(() => {
-    const lessVideosThanDefault = props.videos.length < defaultCount
-
-    return {
-      hasMoreVideos: !lessVideosThanDefault,
-      loadedVideosCount: lessVideosThanDefault ? props.videos.length : defaultCount,
-    }
-  })
-  const items = []
-
-  for (let i = 0; i < loadedVideosCount; i++) {
-    items.push(<VideoCard key={i} video={props.videos[i]} />)
-  }
-
-  const loadVideos = () => {
-    const max = props.videos.length
-
-    loadedVideosCount + defaultCount < max
-      ? setState({
-          loadedVideosCount: loadedVideosCount + defaultCount,
-          hasMoreVideos,
-        })
-      : setState({
-          hasMoreVideos: false,
-          loadedVideosCount: max,
-        })
-  }
+  const hooks = useLoadMore(props.videos.length, defaultCount)
+  const videos = props.videos.slice(0, hooks.loadedVideosCount)
 
   return (
     <Component
       classes={props.classes}
-      items={items}
-      handleClick={loadVideos}
-      hasMoreVideos={hasMoreVideos}
+      videos={videos}
+      handleClick={hooks.loadMore}
+      hasMoreVideos={hooks.hasMoreVideos}
       defaultCount={defaultCount}
     />
   )
