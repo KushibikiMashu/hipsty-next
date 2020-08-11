@@ -19,22 +19,22 @@ const Component: React.FC<Props> = (props) => (
         <BottomNavigationAction label="New" icon={<FiberNewIcon />} />
       </a>
     </Link>
-    <Link href="/music_video">
+    <Link href="/videos/music-videos">
       <a>
         <BottomNavigationAction label="MV" icon={<MusicVideoIcon />} />
       </a>
     </Link>
-    <Link href="/battle">
+    <Link href="/videos/battles">
       <a>
         <BottomNavigationAction label="Battle" icon={<NewReleasesIcon />} />
       </a>
     </Link>
-    <Link href="/interview">
+    <Link href="/videos/interviews">
       <a>
         <BottomNavigationAction label="Interview" icon={<PersonIcon />} />
       </a>
     </Link>
-    <Link href="/others">
+    <Link href="/videos/others">
       <a>
         <BottomNavigationAction label="Others" icon={<LiveTvIcon />} />
       </a>
