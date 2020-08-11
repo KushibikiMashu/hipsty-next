@@ -11,6 +11,7 @@ interface Props extends WithStyles<typeof styles> {
   items: React.FC[]
   hasMoreVideos: boolean
   handleClick: () => void
+  defaultCount: number
 }
 
 const Component: React.FC<Props> = (props) => (
@@ -26,7 +27,7 @@ const Component: React.FC<Props> = (props) => (
             className={props.classes.button}
             onClick={props.handleClick}
           >
-            次の20件を表示
+            次の{props.defaultCount}件を表示
           </Button>
         </Grid>
       ) : (
@@ -41,14 +42,14 @@ interface ContainerProps extends WithStyles<typeof styles> {
 }
 
 const Container: React.FC<ContainerProps> = (props) => {
+  const defaultCount = 50
   // TODO Custom Hooksで切り出す
   const [{ hasMoreVideos, loadedVideosCount }, setState] = useState(() => {
-    const defaultCount = 20
     const lessVideosThanDefault = props.videos.length < defaultCount
 
     return {
       hasMoreVideos: !lessVideosThanDefault,
-      loadedVideosCount: lessVideosThanDefault ? props.videos.length : 20,
+      loadedVideosCount: lessVideosThanDefault ? props.videos.length : defaultCount,
     }
   })
   const items = []
@@ -60,18 +61,26 @@ const Container: React.FC<ContainerProps> = (props) => {
   const loadVideos = () => {
     const max = props.videos.length
 
-    loadedVideosCount + 20 < max
-      ? setState((prev) => ({
-          loadedVideosCount: prev.loadedVideosCount + 20,
-          ...prev,
-        }))
+    loadedVideosCount + defaultCount < max
+      ? setState({
+          loadedVideosCount: loadedVideosCount + defaultCount,
+          hasMoreVideos,
+        })
       : setState({
           hasMoreVideos: false,
           loadedVideosCount: max,
         })
   }
 
-  return <Component classes={props.classes} items={items} handleClick={loadVideos} hasMoreVideos={hasMoreVideos} />
+  return (
+    <Component
+      classes={props.classes}
+      items={items}
+      handleClick={loadVideos}
+      hasMoreVideos={hasMoreVideos}
+      defaultCount={defaultCount}
+    />
+  )
 }
 
 const styles = {
