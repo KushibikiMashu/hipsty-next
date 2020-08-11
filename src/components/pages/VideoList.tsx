@@ -8,6 +8,8 @@ import Grid from '@material-ui/core/Grid/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import useLoadMore from '../../hooks/useLoadMore'
 
+const defaultCount = parseInt(process.env.NEXT_PUBLIC_DISPLAY_VIDEOS_DEFAULT_COUNT, 10)
+
 interface Props extends WithStyles<typeof styles> {
   hasMoreVideos: boolean
   handleClick: () => void
@@ -45,7 +47,6 @@ interface ContainerProps extends WithStyles<typeof styles> {
 }
 
 const Container: React.FC<ContainerProps> = (props) => {
-  const defaultCount = 50
   const hooks = useLoadMore(props.videos.length, defaultCount)
   const videos = props.videos.slice(0, hooks.loadedVideosCount)
 
