@@ -42,10 +42,15 @@ interface ContainerProps extends WithStyles<typeof styles> {
 
 const Container: React.FC<ContainerProps> = (props) => {
   // TODO Custom Hooksで切り出す
-  const [{ hasMoreVideos, loadedVideosCount }, setState] = useState(() => ({
-    hasMoreVideos: true,
-    loadedVideosCount: 20,
-  }))
+  const [{ hasMoreVideos, loadedVideosCount }, setState] = useState(() => {
+    const defaultCount = 20
+    const lessVideosThanDefault = props.videos.length < defaultCount
+
+    return {
+      hasMoreVideos: !lessVideosThanDefault,
+      loadedVideosCount: lessVideosThanDefault ? props.videos.length : 20,
+    }
+  })
   const items = []
 
   for (let i = 0; i < loadedVideosCount; i++) {
