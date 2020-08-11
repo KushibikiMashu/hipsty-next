@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps = async (props: { params: Param }) =
 
 export const getStaticPaths: GetStaticPaths<Param> = async () => {
   const videos = VideoService.getAllVideo()
-  const params = videos.map((video) => ({
+  const paths = videos.map((video) => ({
     params: {
       slug: genreToSlug(video.genre),
       hash: video.hash,
@@ -32,7 +32,7 @@ export const getStaticPaths: GetStaticPaths<Param> = async () => {
   }))
 
   return {
-    paths: params,
+    paths,
     fallback: false,
   }
 }
