@@ -2,14 +2,17 @@ import React from 'react'
 import { genreToSlug, slugToGenre, sortByPublishedAt } from 'src/presenters/VideoPresenter'
 import GenreService from 'src/infra/GenreService'
 import VideoService from 'src/infra/VideoService'
-import { GetStaticPaths, InferGetStaticPropsType } from 'next'
-import VideoList from 'src/components/pages/VideoList'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { Videos } from 'src/types/Video'
+import { VideosPage } from 'src/components/pages'
 
-type Props = InferGetStaticPropsType<typeof getStaticProps>
+type Props = {
+  videos: Videos
+}
 
-const Component: React.FC<Props> = (props) => <VideoList videos={props.videos} />
+const Component: React.FC<Props> = (props) => <VideosPage videos={props.videos} />
 
-export const getStaticProps = async (props) => {
+export const getStaticProps: GetStaticProps<Props, { slug: string }> = async (props) => {
   const genre = slugToGenre(props.params.slug)
   const videos = sortByPublishedAt(VideoService.getVideosByGenre(genre), 'desc')
 

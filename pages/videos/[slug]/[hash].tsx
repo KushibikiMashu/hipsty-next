@@ -1,15 +1,15 @@
 import React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import VideoService from 'src/infra/VideoService'
-import { Video } from '../../../src/types/Video'
-import VideoPlayerTemplate from '../../../src/components/templates/VideoPlayerTemplate'
-import { genreToSlug } from '../../../src/presenters/VideoPresenter'
+import { Video } from 'src/types/Video'
+import { genreToSlug } from 'src/presenters/VideoPresenter'
+import { VideoPage } from 'src/components/pages'
 
 type Props = {
   video: Video
 }
 
-const Component: React.FC<Props> = (props) => <VideoPlayerTemplate video={props.video} />
+const Component: React.FC<Props> = (props) => <VideoPage video={props.video} />
 
 type Param = {
   slug: string

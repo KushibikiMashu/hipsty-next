@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../src/components/Layout'
+import Layout from 'src/components/Layout'
 
 const MyApp = ({ Component, pageProps }) => (
   <>
