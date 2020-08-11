@@ -21,5 +21,6 @@ export const slugToGenre = (slug: string) => {
 export const sortByPublishedAt = (videos: Videos, orderBy: 'asc' | 'desc' = 'asc') =>
   videos.sort((prev, next) => {
     const compare = compareDate(prev.publishedAt, next.publishedAt)
+
     return orderBy === 'asc' ? compare : -compare
   })

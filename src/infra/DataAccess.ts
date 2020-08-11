@@ -17,7 +17,7 @@ export interface Model<T> {
 }
 
 export class VideoModel implements Model<VideoSchema> {
-  findAll = () => videos
+  findAll = () => videos as VideoSchema[]
 }
 
 export class VideoThumbnailModel implements Model<VideoThumbnailSchema> {

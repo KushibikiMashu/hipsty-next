@@ -71,7 +71,7 @@ class VideoService {
     const video = videos.find((video) => video.hash === hash)
 
     if (!video) {
-      throw new Error()
+      throw new Error("Video doesn't exists")
     }
 
     return video

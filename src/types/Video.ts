@@ -1,11 +1,13 @@
 /* eslint-disable camelcase */
 
+import { Genre } from './Genre'
+
 export type VideoSchema = {
   id: string
   channel_id: string
   title: string
   hash: string
-  genre: string
+  genre: Genre
   published_at: string
   created_at: string
   updated_at: string
@@ -17,7 +19,7 @@ export type Video = {
   channelId: string
   title: string
   hash: string
-  genre: string
+  genre: Genre
   publishedAt: string
 
   // Thumbnail
