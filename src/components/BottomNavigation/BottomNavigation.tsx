@@ -1,43 +1,23 @@
 import React from 'react'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
-import FiberNewIcon from '@material-ui/icons/FiberNew'
-import MusicVideoIcon from '@material-ui/icons/MusicVideo'
-import NewReleasesIcon from '@material-ui/icons/NewReleases'
-import PersonIcon from '@material-ui/icons/Person'
-import LiveTvIcon from '@material-ui/icons/LiveTv'
 import Link from 'next/link'
 import { withStyles } from '@material-ui/core/styles'
 import { createStyles, WithStyles } from '@material-ui/styles'
+import { getButtons, NavigationButtons } from './buttons'
 
-type Props = WithStyles<typeof styles>
+interface Props extends WithStyles<typeof styles> {
+  buttons: NavigationButtons
+}
 
 const Component: React.FC<Props> = (props) => (
   <div className={props.classes.root}>
-    <Link href="/">
-      <a>
-        <BottomNavigationAction label="New" icon={<FiberNewIcon />} />
-      </a>
-    </Link>
-    <Link href="/videos/[slug]" as="/videos/music-videos">
-      <a>
-        <BottomNavigationAction label="MV" icon={<MusicVideoIcon />} />
-      </a>
-    </Link>
-    <Link href="/videos/[slug]" as="/videos/battles">
-      <a>
-        <BottomNavigationAction label="Battle" icon={<NewReleasesIcon />} />
-      </a>
-    </Link>
-    <Link href="/videos/[slug]" as="/videos/interviews">
-      <a>
-        <BottomNavigationAction label="Interview" icon={<PersonIcon />} />
-      </a>
-    </Link>
-    <Link href="/videos/[slug]" as="/videos/others">
-      <a>
-        <BottomNavigationAction label="Others" icon={<LiveTvIcon />} />
-      </a>
-    </Link>
+    {props.buttons.map((button, i) => (
+      <Link href={button.path} as={button.as} key={i}>
+        <a>
+          <BottomNavigationAction label={button.label} icon={button.icon} />
+        </a>
+      </Link>
+    ))}
   </div>
 )
 
@@ -49,4 +29,14 @@ const styles = createStyles({
   },
 })
 
-export default withStyles(styles)(Component)
+type ContainerProps = WithStyles<typeof styles>
+
+const Container: React.FC<ContainerProps> = (props) => {
+  const buttons = getButtons()
+
+  return <Component classes={props.classes} buttons={buttons} />
+}
+
+Container.displayName = 'BottomNavigation'
+
+export default withStyles(styles)(Container)
