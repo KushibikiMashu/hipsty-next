@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
-import ResponsiveIframe from '../atoms/ResponsiveIframe'
+import ResponsiveIframe from '../Iframe/ResponsiveIframe'
 import CardContent from '@material-ui/core/CardContent/CardContent'
 import Typography from '@material-ui/core/Typography/Typography'
 import { Video } from '../../types/Video'
