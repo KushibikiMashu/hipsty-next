@@ -6,6 +6,8 @@ import { VideoSchema } from '../types/Video'
 import { VideoThumbnailSchema } from '../types/VideoThumbnail'
 import { ChannelSchema } from '../types/Channel'
 import { ChannelThumbnailSchema } from '../types/ChannelThumbnail'
+import { genres } from '../data/genre'
+import { Genre } from '../types/Genre'
 
 // DataAccess層を設けることによって、データソースに対する関心が分離できる
 // 仮にNetwork（API）を通じてデータを取得する変更があったとしても容易である
@@ -28,4 +30,8 @@ export class ChannelModel implements Model<ChannelSchema> {
 
 export class ChannelThumbnailModel implements Model<ChannelThumbnailSchema> {
   findAll = () => channelThumbnails
+}
+
+export class GenreModel implements Model<Genre> {
+  findAll = () => genres
 }

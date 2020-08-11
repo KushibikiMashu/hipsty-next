@@ -1,5 +1,7 @@
 import { ChannelModel, VideoModel, VideoThumbnailModel } from './DataAccess'
 import { Video, Videos } from '../types/Video'
+import { ChannelSchema } from '../types/Channel'
+import { Genre } from '../types/Genre'
 
 class VideoService {
   constructor(
@@ -12,26 +14,20 @@ class VideoService {
     const videos = this.videoModel.findAll()
     const videoThumbnails = this.videoThumbnailModel.findAll()
 
-    if (videos.length !== videoThumbnails.length) {
+    if (!this.videoExists() && videos.length !== videoThumbnails.length) {
       throw new Error('The number of Video and VideoThumbnail is incorrect.')
     }
 
-    const channels = this.channelModel.findAll()
-    const channelIds = channels.map((channel) => channel.id)
-    const channelMap = new Map()
-
-    for (let i = 0; i < channelIds.length; i++) {
-      const channel = channels[i]
-      channelMap.set(channel.id, channel)
-    }
+    const channelMap = this.createChannelMap()
 
     return videos.map((video, i) => {
       const thumbnail = videoThumbnails[i]
-      const channel = channelMap.get(video.channel_id)
 
-      if (typeof channel === 'undefined') {
-        throw new Error("Channel doesn't exist.")
+      if (!channelMap.has(video.channel_id)) {
+        return
       }
+
+      const channel = channelMap.get(video.channel_id)
 
       return {
         // Video
@@ -54,6 +50,21 @@ class VideoService {
     })
   }
 
+  private videoExists = (): boolean => this.videoModel.findAll().length > 0
+
+  private createChannelMap = (): Map<string, ChannelSchema> => {
+    const channels = this.channelModel.findAll()
+    const ids = channels.map((channel) => channel.id)
+    const map = new Map()
+
+    for (let i = 0; i < ids.length; i++) {
+      const channel = channels[i]
+      map.set(channel.id, channel)
+    }
+
+    return map
+  }
+
   getVideoByHash = (hash: string): Video => {
     const videos = this.getAllVideo()
     const video = videos.find((video) => video.hash === hash)
@@ -64,6 +75,8 @@ class VideoService {
 
     return video
   }
+
+  getVideosByGenre = (genre: Genre): Videos => this.getAllVideo().filter((video) => video.genre === genre)
 }
 
 const service = new VideoService(new VideoModel(), new VideoThumbnailModel(), new ChannelModel())
