@@ -6,7 +6,7 @@ export const excludeGenre = 'radio'
 class GenreService {
   constructor(private genresModel: GenreModel) {}
 
-  genresToLinks = (): Genres => this.genresModel.findAll().filter((genre) => !genre.includes(excludeGenre))
+  eliminateExcludedGenres = (): Genres => this.genresModel.findAll().filter((genre) => !genre.includes(excludeGenre))
 }
 
 const service = new GenreService(new GenreModel())

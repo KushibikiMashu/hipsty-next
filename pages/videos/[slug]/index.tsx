@@ -17,7 +17,7 @@ export const getStaticProps = async (props) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = GenreService.genresToLinks().map((genre) => genreToSlug(genre))
+  const slugs = GenreService.eliminateExcludedGenres().map((genre) => genreToSlug(genre))
   const params = slugs.map((slug) => ({ params: { slug } }))
 
   return { paths: params, fallback: false }
