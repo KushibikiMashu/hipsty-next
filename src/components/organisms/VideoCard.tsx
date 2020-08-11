@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography/Typography'
 import CardActions from '@material-ui/core/CardActions/CardActions'
 import TwitterIcon from '../atoms/TwitterIcon'
 import { Video } from 'src/types/Video'
-import { genreToSlug } from '../../infra/VideoPresenter'
+import { genreToSlug } from '../../presenters/VideoPresenter'
 
 interface Props extends WithStyles<typeof styles> {
   video: Video

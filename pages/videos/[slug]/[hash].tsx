@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import VideoService from 'src/infra/VideoService'
 import { Video } from '../../../src/types/Video'
 import VideoPlayerTemplate from '../../../src/components/templates/VideoPlayerTemplate'
-import { genreToSlug } from '../../../src/infra/VideoPresenter'
+import { genreToSlug } from '../../../src/presenters/VideoPresenter'
 
 type Props = {
   video: Video
