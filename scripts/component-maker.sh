@@ -19,7 +19,7 @@ mkdir "$TARGET"
 touch "$TARGET/index.tsx"
 echo "export { default } from './$COMPONENT'" > "$TARGET/index.tsx"
 
-cp etc/scripts/templates/component-template.txt "$TARGET/$COMPONENT.tsx"
+cp scripts/templates/component-template.txt "$TARGET/$COMPONENT.tsx"
 
 #touch "$TARGET/style.scss"
 
