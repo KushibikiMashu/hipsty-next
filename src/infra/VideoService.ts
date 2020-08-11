@@ -2,6 +2,7 @@ import { ChannelModel, VideoModel, VideoThumbnailModel } from './DataAccess'
 import { Video, Videos } from '../types/Video'
 import { ChannelSchema } from '../types/Channel'
 import { Genre } from '../types/Genre'
+import { excludeGenre } from './GenreService'
 
 class VideoService {
   constructor(
@@ -76,7 +77,16 @@ class VideoService {
     return video
   }
 
-  getVideosByGenre = (genre: Genre): Videos => this.getAllVideo().filter((video) => video.genre === genre)
+  getVideosByGenre = (genre: Genre): Videos => {
+    const videos = this.getAllVideo()
+
+    // navigationにない動画のジャンルはotherにまとめる
+    if (genre === 'other') {
+      return videos.filter((video) => video.genre === excludeGenre || video.genre === genre)
+    }
+
+    return videos.filter((video) => video.genre === genre)
+  }
 }
 
 const service = new VideoService(new VideoModel(), new VideoThumbnailModel(), new ChannelModel())

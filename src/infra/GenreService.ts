@@ -1,12 +1,12 @@
 import { Genres } from '../types/Genre'
 import { GenreModel } from './DataAccess'
 
-class GenreService {
-  private exclude = 'radio'
+export const excludeGenre = 'radio'
 
+class GenreService {
   constructor(private genresModel: GenreModel) {}
 
-  genresToLinks = (): Genres => this.genresModel.findAll().filter((genre) => !genre.includes(this.exclude))
+  genresToLinks = (): Genres => this.genresModel.findAll().filter((genre) => !genre.includes(excludeGenre))
 }
 
 const service = new GenreService(new GenreModel())
