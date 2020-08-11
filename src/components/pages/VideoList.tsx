@@ -19,7 +19,13 @@ const Component: React.FC<Props> = (props) => (
     loadMoreButton={
       props.hasMoreVideos ? (
         <Grid container justify="center" direction="row">
-          <Button variant="outlined" aria-label="Load" className={props.classes.button} onClick={props.handleClick}>
+          <Button
+            variant="contained"
+            color="primary"
+            aria-label="Load"
+            className={props.classes.button}
+            onClick={props.handleClick}
+          >
             次の20件を表示
           </Button>
         </Grid>

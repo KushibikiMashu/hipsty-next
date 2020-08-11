@@ -13,7 +13,7 @@ interface Props extends WithStyles<typeof styles> {
 
 const Component: React.FC<Props> = (props) => (
   <>
-    <Grid container justify="center" spacing={10}>
+    <Grid container justify="center" className={props.classes.player}>
       <Grid item>
         <VideoCardPlaying video={props.video} />
       </Grid>
@@ -21,7 +21,7 @@ const Component: React.FC<Props> = (props) => (
     <Grid container justify="center" direction="row">
       <Link href="/">
         <a>
-          <Button variant="outlined" className={props.classes.button}>
+          <Button variant="contained" color="primary" className={props.classes.button}>
             HOME
           </Button>
         </a>
@@ -31,6 +31,9 @@ const Component: React.FC<Props> = (props) => (
 )
 
 const styles = {
+  player: {
+    paddingTop: 12,
+  },
   button: {
     padding: '12px 24px',
     marginTop: 24,
