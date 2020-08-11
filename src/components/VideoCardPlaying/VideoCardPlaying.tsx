@@ -1,7 +1,6 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
 import ResponsiveIframe from '../atoms/ResponsiveIframe'
-import { CONST } from '../const'
 import CardContent from '@material-ui/core/CardContent/CardContent'
 import Typography from '@material-ui/core/Typography/Typography'
 import { Video } from '../../types/Video'
@@ -17,7 +16,7 @@ interface Props extends WithStyles<typeof styles> {
 const Component: React.FC<Props> = (props) => (
   <div className={props.classes.root}>
     <Card className={props.classes.card}>
-      <ResponsiveIframe src={CONST.youtubeEnbedUrl + props.video.hash} />
+      <ResponsiveIframe src={props.video.hash} />
 
       <CardContent className={props.classes.cardContent}>
         <Typography gutterBottom variant="h5">

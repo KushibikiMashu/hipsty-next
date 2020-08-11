@@ -11,10 +11,9 @@ function ResponsiveIframe(props) {
     width: isSmallScreen ? '100%' : 640,
     height: isSmallScreen ? 280 : 460,
   }
-  if (isWidthUp('sm', width)) {
-    return <iframe src={src} {...ifremeProps} frameBorder="0" allow="autoplay encrypted-media" allowFullScreen />
-  }
-  return <iframe src={src} {...ifremeProps} frameBorder="0" allow="autoplay encrypted-media" allowFullScreen />
+
+  const iframe = <iframe src={src} {...ifremeProps} frameBorder="0" allow="autoplay encrypted-media" allowFullScreen />
+  return isWidthUp('sm', width) ? iframe : iframe
 }
 
 ResponsiveIframe.propTypes = {

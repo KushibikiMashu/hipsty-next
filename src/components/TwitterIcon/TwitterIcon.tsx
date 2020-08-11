@@ -1,6 +1,5 @@
 import React from 'react'
 import { TwitterShareButton } from 'react-share'
-import { CONST } from '../const'
 import { withStyles } from '@material-ui/core'
 import { WithStyles } from '@material-ui/styles'
 
@@ -11,11 +10,7 @@ interface Props extends WithStyles<typeof styles> {
 
 const Component: React.FC<Props> = (props) => (
   <div className={props.classes.icon}>
-    <TwitterShareButton
-      title={`「${props.title}」`}
-      hashtags={['日本語ラップ', 'HIPHOP']}
-      url={CONST.videoUrl + '/' + props.hash}
-    >
+    <TwitterShareButton title={`「${props.title}」`} hashtags={['日本語ラップ', 'HIPHOP']} url={'/video/' + props.hash}>
       <i className="fab fa-twitter fa-lg" style={{ color: '#1da1f2' }} />
     </TwitterShareButton>
   </div>
