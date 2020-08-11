@@ -3,14 +3,23 @@
 import { Genre } from '../types/Genre'
 import { Videos } from '../types/Video'
 import { compareDate } from '../utiles/datetime'
+import { GenreModel } from '../infra/DataAccess'
 
-export const genreToSlug = (genre: string) => `${genre}s`
+export const genreToSlug = (genre: Genre) => `${genre}s`
 
-export const slugToGenre = (slug: string) => slug.slice(0, -1) as Genre
+export const slugToGenre = (slug: string) => {
+  const genre = slug.slice(0, -1) as Genre
+  const genres = new GenreModel().findAll()
+
+  if (!genres.includes(genre)) {
+    throw new Error('Invalid argument: slug')
+  }
+
+  return genre
+}
 
 export const sortByPublishedAt = (videos: Videos, orderBy: 'asc' | 'desc' = 'asc') =>
   videos.sort((prev, next) => {
     const compare = compareDate(prev.publishedAt, next.publishedAt)
-
     return orderBy === 'asc' ? compare : -compare
   })
