@@ -16,7 +16,7 @@ class VideoService {
     const videoThumbnails = this.videoThumbnailModel.findAll()
 
     if (!this.videoExists() && videos.length !== videoThumbnails.length) {
-      throw new Error('The number of Video and VideoThumbnail is incorrect.')
+      throw new Error('The number of Video and VideoThumbnail is not same.')
     }
 
     const channelMap = this.createChannelMap()
@@ -71,7 +71,7 @@ class VideoService {
     const video = videos.find((video) => video.hash === hash)
 
     if (!video) {
-      throw new Error("Video doesn't exists")
+      throw new Error(`Invalid hash: ${hash}`)
     }
 
     return video
@@ -80,7 +80,7 @@ class VideoService {
   getVideosByGenre = (genre: Genre): Videos => {
     const videos = this.getAllVideo()
 
-    // navigationにない動画のジャンルはotherにまとめる
+    // excludeGenreで指定した動画のジャンルはotherにまとめる
     if (genre === 'other') {
       return videos.filter((video) => video.genre === excludeGenre || video.genre === genre)
     }
