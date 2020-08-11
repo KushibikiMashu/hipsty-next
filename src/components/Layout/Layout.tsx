@@ -1,15 +1,15 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid/Grid'
-import TitleBar from '../organisms/TitleBar'
-import LabelBottomNavigation from '../organisms/LabelBottomNavigation'
+import LabelBottomNavigation from '../BottomNavigation/BottomNavigation'
 import { createStyles, WithStyles } from '@material-ui/styles'
+import Header from '../Header'
 
 type Props = WithStyles<typeof styles>
 
 const Component: React.FC<Props> = (props) => (
   <div className={props.classes.root}>
-    <TitleBar />
+    <Header />
     <main className={props.classes.content}>
       <div className={props.classes.toolbar} />
       {props.children}

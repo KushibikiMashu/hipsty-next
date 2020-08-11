@@ -8,7 +8,7 @@ import { WithStyles } from '@material-ui/styles'
 import CardContent from '@material-ui/core/CardContent/CardContent'
 import Typography from '@material-ui/core/Typography/Typography'
 import CardActions from '@material-ui/core/CardActions/CardActions'
-import TwitterIcon from '../atoms/TwitterIcon'
+import TwitterIcon from '../TwitterIcon/TwitterIcon'
 import { Video } from 'src/types/Video'
 import { genreToSlug } from '../../presenters/VideoPresenter'
 

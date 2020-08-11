@@ -1,6 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core'
-import VideoCardPlaying from '../organisms/VideoCardPlaying'
+import VideoCardPlaying from '../VideoCardPlaying/VideoCardPlaying'
 import Grid from '@material-ui/core/Grid/Grid'
 import Button from '@material-ui/core/Button'
 import Link from 'next/link'

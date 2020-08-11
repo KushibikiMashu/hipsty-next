@@ -8,7 +8,7 @@ import { Video } from '../../types/Video'
 import CardActions from '@material-ui/core/CardActions/CardActions'
 import { withStyles } from '@material-ui/core'
 import { createStyles, WithStyles } from '@material-ui/styles'
-import TwitterIcon from '../atoms/TwitterIcon'
+import TwitterIcon from '../TwitterIcon/TwitterIcon'
 
 interface Props extends WithStyles<typeof styles> {
   video: Video

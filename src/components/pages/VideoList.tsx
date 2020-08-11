@@ -1,5 +1,5 @@
 import React from 'react'
-import VideoCard from '../organisms/VideoCard'
+import VideoCard from '../VideoCard/VideoCard'
 import VideoListTemplate from '../templates/VideoListTemplate'
 import { Videos } from '../../types/Video'
 import { WithStyles } from '@material-ui/styles'
