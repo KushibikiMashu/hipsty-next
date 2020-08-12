@@ -1,6 +1,37 @@
 import VideoService from '../VideoService'
+import { videos } from 'src/data/videos'
 
 describe('VideoService', () => {
+  describe('getAllVideo', () => {
+    test('Videoとvideoに関連するサムネイル画像、チャンネルのオブジェクトの配列を返す', () => {
+      const actual = VideoService.getAllVideo()
+
+      // ファイルに格納している1件目の動画のデータでテストする
+      const expected = {
+        id: '1',
+        channelId: '1',
+        title: 'R-指定 UMB 3連覇達成＆Creepy Nuts本格始動 コメント',
+        hash: 'FztA3MuLBwo',
+        genre: 'music-video',
+        publishedAt: '2015-01-01 09:43:09',
+        thumbnail: 'https://i.ytimg.com/vi/FztA3MuLBwo/mqdefault.jpg',
+        channelTitle: 'Creepy Nuts (R-指定 ＆ DJ 松永)',
+        channelHash: 'UCEc1YzMOSKKtJD7H-q71HgQ',
+        channelVideoCount: '54',
+        channelPublishedAt: '2014-11-25 11:42:08',
+      }
+
+      expect(actual[0]).toEqual(expected)
+    })
+
+    test('videosを取得したとき、配列の長さはVideoのレコード数と同じである', () => {
+      const expected = videos.length
+      const actual = VideoService.getAllVideo()
+
+      expect(actual.length).toEqual(expected)
+    })
+  })
+
   describe('getVideoByHash', () => {
     test('Videoのhash（FztA3MuLBwo）を渡したとき、同じhashのvideoを返す', () => {
       const hash = 'FztA3MuLBwo'
