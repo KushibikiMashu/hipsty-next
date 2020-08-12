@@ -1,35 +1,35 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 export default function useLoadMore(
   count: number,
   defaultCount = 50
 ): {
-  hasMoreVideos: boolean
-  loadedVideosCount: number
+  hasMore: boolean
+  currentCount: number
   loadMore: () => void
 } {
-  const [{ hasMoreVideos, loadedVideosCount }, setState] = useState(() => {
-    const lessVideosThanDefault = count < defaultCount
+  const [{ hasMore, currentCount }, setState] = useState(() => {
+    const lessVideosThanDefault = count <= defaultCount
 
     return {
-      hasMoreVideos: !lessVideosThanDefault,
-      loadedVideosCount: lessVideosThanDefault ? count : defaultCount,
+      hasMore: !lessVideosThanDefault,
+      currentCount: lessVideosThanDefault ? count : defaultCount,
     }
   })
 
-  const loadMore = () => {
+  const loadMore = useCallback(() => {
     const max = count
 
-    loadedVideosCount + defaultCount < max
+    currentCount + defaultCount < max
       ? setState({
-          loadedVideosCount: loadedVideosCount + defaultCount,
-          hasMoreVideos,
+          hasMore,
+          currentCount: currentCount + defaultCount,
         })
       : setState({
-          hasMoreVideos: false,
-          loadedVideosCount: max,
+          hasMore: false,
+          currentCount: max,
         })
-  }
+  }, [currentCount])
 
-  return { hasMoreVideos, loadedVideosCount, loadMore }
+  return { hasMore: hasMore, currentCount: currentCount, loadMore }
 }

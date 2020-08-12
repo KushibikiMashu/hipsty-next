@@ -11,7 +11,7 @@ import useLoadMore from '../../hooks/useLoadMore'
 const defaultCount = parseInt(process.env.NEXT_PUBLIC_DISPLAY_VIDEOS_DEFAULT_COUNT, 10)
 
 interface Props extends WithStyles<typeof styles> {
-  hasMoreVideos: boolean
+  hasMore: boolean
   handleClick: () => void
   defaultCount: number
   videos: Videos
@@ -23,7 +23,7 @@ const Component: React.FC<Props> = (props) => (
       <VideoCard key={i} video={video} />
     ))}
     loadMoreButton={
-      props.hasMoreVideos ? (
+      props.hasMore ? (
         <Grid container justify="center" direction="row">
           <Button
             variant="contained"
@@ -48,14 +48,14 @@ interface ContainerProps extends WithStyles<typeof styles> {
 
 const Container: React.FC<ContainerProps> = (props) => {
   const hooks = useLoadMore(props.videos.length, defaultCount)
-  const videos = props.videos.slice(0, hooks.loadedVideosCount)
+  const videos = props.videos.slice(0, hooks.currentCount)
 
   return (
     <Component
       classes={props.classes}
       videos={videos}
       handleClick={hooks.loadMore}
-      hasMoreVideos={hooks.hasMoreVideos}
+      hasMore={hooks.hasMore}
       defaultCount={defaultCount}
     />
   )
